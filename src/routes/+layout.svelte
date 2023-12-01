@@ -4,7 +4,7 @@
 
 <div class="h-screen w-screen">
 	<nav
-		class="bg-[#512727] h-12 md:h-20 flex flex-row relative items-center px-5 border-b-2 border-red-700 outline-b"
+		class="bg-[#512727] h-12 md:h-20 flex flex-row relative items-center px-5 border-b-2 border-red-800 outline-b"
 	>
 		<div
 			class="absolute left-0 right-0 px-10 py-1 h-full flex flex-row items-center justify-center gap-4 bg-gradient-to-r from-[#c3adc500] via-[#ae2833] to-[#c3adc500]"
