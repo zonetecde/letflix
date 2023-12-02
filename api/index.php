@@ -42,32 +42,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['endpoint'])) {
 
         // Renvoie les résultats
         echo json_encode(['results' => $results]);
-    }
+    }  
     else if ($endpoint === 'themoviedb'){
-        // http://localhost:8000/index.php?endpoint=themoviedb&req=https%3A%2F%2Fapi.themoviedb.org%2F3%2Fsearch%2Fmovie%3Fapi_key%3D%25apikey%25%26query%3Dthe%2Bavengers
+        // Regarde si le poster existe déjà dans la base de données
+        $db = new SQLite3('db.sqlite3');
+        $result = $db->query("SELECT * FROM poster WHERE title = '" . $_GET['title'] . "'");
+        $row = $result->fetchArray(SQLITE3_ASSOC);
+        if ($row) {
+            echo json_encode($row['Path']);
+            exit;
+        }
 
         // Remplace l'API Key dans l'URL par la vraie clé
-        $url = str_replace('%apikey%', $apiKey, $_GET['req']);
+        $url = str_replace('%apikey%', $apiKey, 'https://api.themoviedb.org/3/search/movie?api_key=%apikey%&query=');
+        $url = $url . urlencode($_GET['title']);
         
         $ch = curl_init($url);
         
-        // Set cURL options
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
         
         $result = curl_exec($ch);
         
-        // Check for cURL errors
         if (curl_errno($ch)) {
             echo 'Curl error: ' . curl_error($ch);
         }
         
+        // Ajoute le poster à la base de données
+        $result = json_decode($result, true);
+        $result = $result['results'][0]['poster_path'];
+        $db->exec("INSERT INTO poster (title, path) VALUES ('" . $_GET['title'] . "', '" . $result . "')");
+
         curl_close($ch);
         
         echo json_encode($result);
-        
-        
     }
     else {
         echo json_encode(['error' => 'Invalid endpoint']);

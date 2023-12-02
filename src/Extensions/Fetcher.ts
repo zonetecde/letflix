@@ -16,16 +16,14 @@ export async function FetchDB(sql: string): Promise<any> {
 	return (await res.json()).results;
 }
 
-export async function FindFromTMDB(title: string, release_date: string): Promise<Result> {
-	const url =
-		AppVariables.TMDB_API_URL +
-		encodeURIComponent(`https://api.themoviedb.org/3/search/movie?api_key=%apikey%&query=${title}`);
+export async function GetPosterPath(title: string, release_date: string): Promise<string> {
+	const url = AppVariables.TMDB_API_URL + encodeURIComponent(title);
 
 	const res = await fetch(url);
 
-	console.log(url);
-
-	const root: Root = JSON.parse(await res.json());
-
-	return root.results[0];
+	try {
+		return 'https://image.tmdb.org/t/p/original' + (await res.json());
+	} catch {
+		return 'no_poster.png';
+	}
 }
