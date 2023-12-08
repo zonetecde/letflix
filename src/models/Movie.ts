@@ -12,6 +12,10 @@ export default class Movie {
 	Duration: number;
 	MainGenre: string;
 
+	Genres: string;
+	ProductionCountries: string;
+	AgeCertification: string;
+
 	constructor(
 		Overview: string,
 		Title: string,
@@ -21,7 +25,10 @@ export default class Movie {
 		VoteCount: number,
 		MainProduction: string,
 		Duration: number,
-		MainGenre: string
+		MainGenre: string,
+		Genres: string,
+		ProductionCountries: string,
+		AgeCertification: string
 	) {
 		this.Overview = Overview;
 		this.Title = Title;
@@ -33,5 +40,9 @@ export default class Movie {
 		this.MainProduction = MainProduction;
 		this.Duration = Duration;
 		this.MainGenre = MainGenre;
+
+		this.Genres = Genres;
+		this.ProductionCountries = ProductionCountries;
+		this.AgeCertification = AgeCertification;
 	}
 }
