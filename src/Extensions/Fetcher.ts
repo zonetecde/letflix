@@ -1,4 +1,5 @@
 import AppVariables from '../AppVariables';
+import Movie from '../models/Movie';
 import type { Result } from '../models/TMDB';
 import type Root from '../models/TMDB';
 
@@ -7,13 +8,38 @@ import type Root from '../models/TMDB';
  * @param sql La requête SQL à exécuter
  * @returns Les données de la requête
  */
-export async function FetchDB(sql: string): Promise<any> {
-	const url =
-		AppVariables.SQL_API_URL + 'SELECT * FROM topratedmovies ORDER BY VoteAverage desc LIMIT 15';
+export async function FetchDB(sql: string, tableName: string): Promise<any> {
+	const url = AppVariables.SQL_API_URL + sql;
 
 	const res = await fetch(url);
 
-	return (await res.json()).results;
+	const results: [] = (await res.json()).results;
+
+	// Si la requête SQL contient le nom de la table 'BestMoviesNetflix' alors
+	// convertis les résultats en objet Movie
+	if (tableName.toLowerCase() === 'bestmoviesnetflix') {
+		let movies: Movie[] = [];
+
+		results.map((mov: any) => {
+			movies.push(
+				new Movie(
+					'',
+					mov.TITLE,
+					-1,
+					mov.RELEASE_YEAR,
+					mov.SCORE,
+					mov.NUMBER_OF_VOTES,
+					mov.MAIN_PRODUCTION,
+					mov.DURATION,
+					mov.MAIN_GENRE
+				)
+			);
+		});
+
+		return movies;
+	}
+
+	return results;
 }
 
 export async function GetPosterPath(title: string, release_date: string): Promise<string> {

@@ -9,12 +9,16 @@
 		<div
 			class="absolute left-0 right-0 px-10 py-1 h-full flex flex-row items-center justify-center gap-4 bg-gradient-to-r from-[#c3adc500] via-[#ae2833] to-[#c3adc500]"
 		>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 			<img
 				src="letflix-white.png"
 				alt="Logo du site"
 				class="h-full object-contain cursor-pointer"
 				on:click={() => window.location.reload()}
 			/>
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 			<img
 				src="github.png"
 				alt="GitHub logo"
