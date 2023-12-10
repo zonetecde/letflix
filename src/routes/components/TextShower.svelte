@@ -23,9 +23,9 @@
 <section
 	class="flex flex-col border-2 border-gray-600 rounded-b-xl h-fit px-2 p-1 shadow-xl bg-[#997578] shadow-gray-800"
 >
-	<p class="font-bold">{sectionTitle}</p>
+	<p class="font-bold">{@html sectionTitle}</p>
 	{#if texts.length === 0}
-		<ShowButton on:processRequestion={handleProcessRequestion} />
+		<ShowButton on:processRequestion={handleProcessRequestion} {sql} />
 	{:else}
 		<div
 			class="flex flex-row overflow-x-auto mt-3 horizontal-scrollbar overflow-y-hidden gap-x-2 pb-2"

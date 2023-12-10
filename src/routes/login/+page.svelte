@@ -33,7 +33,7 @@
 	};
 
 	const handleAnimEnd = () => {
-		dispatcher('loggedIn');
+		window.location.href = '/page1.php';
 	};
 </script>
 

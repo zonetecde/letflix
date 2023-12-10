@@ -36,7 +36,7 @@
 >
 	<p class="font-bold">{sectionTitle}</p>
 	{#if counter === undefined}
-		<ShowButton on:processRequestion={handleProcessRequestion} />
+		<ShowButton on:processRequestion={handleProcessRequestion} {sql} />
 	{:else}
 		<div
 			class={'flex flex-row items-center border-2 justify-center overflow-x-auto mt-1 mb-1 horizontal-scrollbar overflow-y-hidden gap-x-2 h-[75px] w-[160px] bg-orange-200 rounded-2xl ' +

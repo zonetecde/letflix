@@ -24,7 +24,7 @@
 >
 	<p class="font-bold">{sectionTitle}</p>
 	{#if movie === undefined}
-		<ShowButton on:processRequestion={handleProcessRequestion} />
+		<ShowButton on:processRequestion={handleProcessRequestion} {sql} />
 	{:else}
 		<div
 			class="flex flex-row overflow-x-auto mt-3 horizontal-scrollbar overflow-y-hidden gap-x-2 pb-2 h-[300px]"
