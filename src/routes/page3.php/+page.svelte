@@ -17,7 +17,7 @@
 
 	<br />
 	<Carrousel
-		sectionTitle="Les titres des films où Johnny Depp a joué et interdit au moins de 17 ans :"
+		sectionTitle="Les titres des films où Johnny Depp a joué et qui sont interdit au moins de 17 ans :"
 		sql="SELECT titles.* FROM titles, credits where titles.id = credits.id and credits.name = 'Johnny Depp' and titles.age_certification = 'R';"
 		tableName="titles"
 	/>
