@@ -17,7 +17,7 @@
 		on:click={handleProcessRequestion}>Charger...</button
 	>
 
-	<p class="bg-white ml-9 px-3 rounded-lg opacity-0 hidden-text duration-200">{sql}</p>
+	<code class="bg-white ml-9 px-3 rounded-lg opacity-0 hidden-text duration-200">{sql}</code>
 </div>
 
 <style>

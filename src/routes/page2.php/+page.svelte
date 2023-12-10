@@ -34,7 +34,7 @@
 	<br />
 
 	<Resume
-		sql="SELECT * from topratedmovies where Title like '%Die Hard%' order by Popularity LIMIT 1 OFFSET 2;"
+		sql="SELECT * FROM topratedmovies WHERE Title LIKE '%Die Hard%' ORDER BY Popularity LIMIT 1 OFFSET (SELECT COUNT(*) / 2 FROM topratedmovies WHERE Title LIKE '%Die Hard%');"
 		sectionTitle="La description du film à la popularité médiane Die Hard"
 		tableName="topratedmovies"
 	/>
