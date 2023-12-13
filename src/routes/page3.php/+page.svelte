@@ -4,6 +4,18 @@
 	import Carrousel from '../components/FilmsShower.svelte';
 	import Nombre from '../components/Nombre.svelte';
 	import PageSwitcher from '../components/PageSwitcher.svelte';
+	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+
+	let showAds = false;
+	onMount(() => {
+		setTimeout(() => {
+			showAds = true;
+		}, 500);
+	});
+
+	let promptShown = false;
+	let promptText = '';
 </script>
 
 <div class="w-full h-full bg-[#532727] text-black p-4 overflow-y-auto scrollbar">
@@ -37,4 +49,35 @@
 		sql="SELECT topratedmovies.* FROM titles, topratedmovies where titles.title = topratedmovies.title order by topratedmovies.popularity limit 10;"
 		tableName="topratedmovies"
 	/>
+
+	{#if showAds}
+		<div class="absolute w-full h-full left-0 top-0 flex items-center justify-center">
+			<div transition:fade class=" w-[500px] h-[600px] relative mt-20 flex flex-col">
+				<!-- Close -->
+				<button
+					class="absolute top-0 right-0 px-2 py-2 bg-red-500 rounded-bl-xl text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+					on:click={() => {
+						// prompt
+						promptShown = true;
+						promptText = 'Etes-vous sûr de vouloir fermer la publicité ?';
+					}}>X</button
+				>
+
+				<img src="ad3.png" alt="Publicité" class=" object-contain border-4 border-white" />
+
+				{#if promptShown}
+					<div
+						class="w-10/12 h-[150px] p-4 text-xl absolute top-1/2 -translate-y-1/2 self-center bg-white bg-opacity-80 text-center"
+					>
+						<p>{promptText}</p>
+
+						<div class="flex-row gap-x-4 flex items-center justify-center mt-5">
+							<button class="bg-red-400 px-3 py-1.5 border-2 border-red-600">Non</button>
+							<button class="bg-green-400 px-3 py-1.5 border-2 border-green-600">Oui</button>
+						</div>
+					</div>
+				{/if}
+			</div>
+		</div>
+	{/if}
 </div>

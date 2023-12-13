@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { afterUpdate, onMount } from 'svelte';
 	import '../app.css';
+	import { modal } from '../models/Store';
+	import { fade } from 'svelte/transition';
 
 	let onLoginScreen: boolean = false;
 
@@ -16,6 +18,11 @@
 	function goToMain() {
 		window.location.href = '/';
 	}
+
+	let modalText = '';
+	const unsubscribe = modal.subscribe((value) => {
+		modalText = value;
+	});
 </script>
 
 {#if onLoginScreen}
@@ -51,6 +58,35 @@
 
 		<div class="h-full -mt-12 pt-12 md:-mt-20 md:pt-20">
 			<slot />
+
+			{#if modalText !== ''}
+				<div
+					transition:fade
+					class="bg-black bg-opacity-60 absolute inset-0 flex items-center justify-center"
+				>
+					<div
+						class="bg-red-100 w-8/12 h-2/6 rounded-3xl border-4 border-black shadow-xl shadow-red-100 flex items-center justify-center relative flex flex-col"
+					>
+						<!-- Close -->
+						<button
+							class="absolute top-0 right-0 w-10 h-10 bg-red-600 border-l-4 border-b-4 border-black pt-1 pr-1 text-white text-xl font-bold flex items-center justify-center rounded-tr-2xl"
+							on:click={() => modal.set('')}>X</button
+						>
+						<p class="text-black lg:text-3xl md:text-2xl text-xl md:px-32 text-center">
+							{@html modalText}
+						</p>
+
+						{#if modalText.includes('XILON')}
+							<button
+								class="w-64 h-16 bg-red-800 rounded-lg text-lg absolute bottom-0 mb-5 duration-150 xilon-button"
+								on:click={() =>
+									modal.set(
+										"Vous avez souscrit à l'abonnement <b>urgence capillaire</b>.</br>Nouveau délai de livraison estimé à 24 heures."
+									)}>Annuler la commande</button
+							>
+						{/if}
+					</div>
+				</div>{/if}
 		</div>
 	</div>
 {/if}
