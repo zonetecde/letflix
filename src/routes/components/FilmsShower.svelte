@@ -24,6 +24,8 @@
 			matchedMovies = tempMatchedMovies;
 		});
 	};
+
+	function handleWatchFilm(event: MouseEvent & { currentTarget: EventTarget & HTMLDivElement }) {}
 </script>
 
 <section
@@ -37,6 +39,7 @@
 			{#each matchedMovies as movie}
 				<div
 					class="relative duration-150 min-w-[200px] max-w-[200px] flex flex-col border-2 border-red-400 hover:z-50 hover:scale-110"
+					on:click={handleWatchFilm}
 				>
 					<p class="w-full text-white bg-black text-center">{movie.Title}</p>
 

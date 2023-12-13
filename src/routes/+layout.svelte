@@ -2,7 +2,7 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import '../app.css';
 
-	let onLoginScreen: boolean = true;
+	let onLoginScreen: boolean = false;
 
 	afterUpdate(() => {
 		const page = window.location.pathname.split('/')[1];
