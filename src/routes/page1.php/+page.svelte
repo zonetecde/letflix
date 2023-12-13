@@ -3,6 +3,11 @@
 	import TextShower from '../components/TextShower.svelte';
 	import Carrousel from '../components/FilmsShower.svelte';
 	import PageSwitcher from '../components/PageSwitcher.svelte';
+
+	let onMovieScreen = false;
+	function handleWatchMovie() {
+		onMovieScreen = true;
+	}
 </script>
 
 <div class="w-full h-full bg-[#532727] text-black p-4 overflow-y-auto scrollbar">
@@ -12,6 +17,7 @@
 		sql="SELECT * FROM 'topratedmovies' where title like 'Star Wars%';"
 		sectionTitle="Nos films Star Wars"
 		tableName="topratedmovies"
+		on:watchMovie={handleWatchMovie}
 	/>
 	<br />
 
@@ -36,4 +42,13 @@
 		sectionTitle="La description du film Spider-Man le mieux noté :"
 		tableName="topratedmovies"
 	/>
+
+	{#if onMovieScreen}
+		<iframe
+			class="absolute bottom-0 left-0 right-0 top-0"
+			src="https://www.youtube.com/embed/0KW8stZ2jSQ?autoplay=1&mute=1&controls=0&loop=1&playlist=0KW8stZ2jSQ"
+			allow="autoplay; encrypted-media"
+			allowfullscreen
+		></iframe>
+	{/if}
 </div>
