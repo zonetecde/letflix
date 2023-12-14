@@ -3,14 +3,13 @@
 	import type Movie from '../../models/Movie';
 	import { FetchDB, GetPosterPath } from '../../Extensions/Fetcher';
 	import ShowButton from './ShowButton.svelte';
+	import { watchMovie } from '../../models/Store';
 
 	export let sql: string;
 	export let sectionTitle: string;
 	export let tableName: string;
 
 	let matchedMovies: Movie[] = [];
-
-	const dispatcher = createEventDispatcher();
 
 	// Récupère les films les mieux notés
 	const handleProcessRequestion = async () => {
@@ -28,7 +27,7 @@
 	};
 
 	function handleWatchMovieButtonClicked() {
-		dispatcher("watchMovie")
+		watchMovie.set(true);
 	}
 </script>
 

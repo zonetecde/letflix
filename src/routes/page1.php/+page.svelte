@@ -28,7 +28,6 @@
 			sql="SELECT * FROM 'topratedmovies' where title like 'Star Wars%';"
 			sectionTitle="Nos films Star Wars"
 			tableName="topratedmovies"
-			on:watchMovie={handleWatchMovie}
 		/>
 		<br />
 
@@ -54,14 +53,6 @@
 			tableName="topratedmovies"
 		/>
 	</div>
-	{#if onMovieScreen}
-		<iframe
-			class="absolute bottom-0 left-0 right-0 top-0"
-			src="https://www.youtube.com/embed/0KW8stZ2jSQ?autoplay=1&mute=1&controls=0&loop=1&playlist=0KW8stZ2jSQ"
-			allow="autoplay; encrypted-media"
-			allowfullscreen
-		></iframe>
-	{/if}
 
 	<div class="col-span-1 flex items-center border-2 border-black bg-black relative">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->

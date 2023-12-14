@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterUpdate, onMount } from 'svelte';
 	import '../app.css';
-	import { modal } from '../models/Store';
+	import { modal, watchMovie } from '../models/Store';
 	import { fade } from 'svelte/transition';
 
 	let onLoginScreen: boolean = false;
@@ -20,8 +20,12 @@
 	}
 
 	let modalText = '';
-	const unsubscribe = modal.subscribe((value) => {
+	modal.subscribe((value) => {
 		modalText = value;
+	});
+	let movieScreen = false;
+	watchMovie.subscribe((value) => {
+		movieScreen = value;
 	});
 </script>
 
@@ -87,6 +91,23 @@
 						{/if}
 					</div>
 				</div>{/if}
+
+			{#if movieScreen}
+				<div class="absolute bottom-0 left-0 right-0 top-0 fullscreen">
+					<iframe
+						class="w-full h-full"
+						src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&controls=0&loop=1"
+						allow="autoplay; encrypted-media"
+						allowfullscreen
+						title="Trailer"
+					></iframe>
+
+					<button
+						class="absolute top-3 right-3 w-10 h-10 bg-red-600 hover:bg-red-700 hover:scale-110 duration-150 border-4 border-black text-white text-xl font-bold flex items-center justify-center"
+						on:click={() => watchMovie.set(false)}>X</button
+					>
+				</div>
+			{/if}
 		</div>
 	</div>
 {/if}

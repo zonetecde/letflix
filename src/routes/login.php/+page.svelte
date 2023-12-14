@@ -150,5 +150,9 @@
 				<p class="my-2 text-[#636262] w-full text-center">M. Boyaval</p>
 			</button>
 		</div>
+
+		<i class="text-white opacity-40"
+			>Pour une meilleure expérience, appuyez sur F11 (plein écran)
+		</i>
 	{/if}
 </div>

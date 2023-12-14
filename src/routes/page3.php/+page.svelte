@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Resume from '../components/Resume.svelte';
 	import TextShower from '../components/TextShower.svelte';
 	import Carrousel from '../components/FilmsShower.svelte';
@@ -11,11 +11,28 @@
 	onMount(() => {
 		setTimeout(() => {
 			showAds = true;
-		}, 500);
+		}, 7_000);
 	});
 
 	let promptShown = false;
-	let promptText = '';
+	let promptIndex = 1;
+	let promptTexts: Record<number, string> = {
+		1: 'Etes-vous sûr de vouloir fermer la publicité ?',
+		2: 'Attention, cette action est irréversible !',
+		3: 'Vous ne pourrez plus jamais voir cette publicité !',
+		4: "Vous n'avez pas honte de ne pas vouloir donner vos cheveux ?",
+		5: 'Laissez-moi devinez, vous êtes chauve ?',
+		6: 'Veuillez activer votre webcam pour continuer'
+	};
+
+	function handleButtonAdClick() {
+		if (promptIndex == 6) {
+			promptShown = false;
+			showAds = false;
+		} else {
+			promptIndex++;
+		}
+	}
 </script>
 
 <div class="w-full h-full bg-[#532727] text-black p-4 overflow-y-auto scrollbar">
@@ -59,7 +76,7 @@
 					on:click={() => {
 						// prompt
 						promptShown = true;
-						promptText = 'Etes-vous sûr de vouloir fermer la publicité ?';
+						promptIndex = 1;
 					}}>X</button
 				>
 
@@ -69,11 +86,17 @@
 					<div
 						class="w-10/12 h-[150px] p-4 text-xl absolute top-1/2 -translate-y-1/2 self-center bg-white bg-opacity-80 text-center"
 					>
-						<p>{promptText}</p>
+						<p>{promptTexts[promptIndex]}</p>
 
 						<div class="flex-row gap-x-4 flex items-center justify-center mt-5">
-							<button class="bg-red-400 px-3 py-1.5 border-2 border-red-600">Non</button>
-							<button class="bg-green-400 px-3 py-1.5 border-2 border-green-600">Oui</button>
+							<button
+								class="bg-red-400 px-3 py-1.5 border-2 border-red-600"
+								on:click={handleButtonAdClick}>Non</button
+							>
+							<button
+								class="bg-green-400 px-3 py-1.5 border-2 border-green-600"
+								on:click={handleButtonAdClick}>Oui</button
+							>
 						</div>
 					</div>
 				{/if}
