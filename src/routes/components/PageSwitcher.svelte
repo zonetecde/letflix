@@ -23,7 +23,7 @@
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
-			stroke-width="1.5"
+			stroke-width="1.49"
 			stroke={page == 1 ? 'gray' : 'white'}
 			class="h-14"
 		>
