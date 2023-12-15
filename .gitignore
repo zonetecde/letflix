@@ -12,3 +12,4 @@ vendor/
 api_key.php
 letflix.zip
 .git.zip
+.vercel/*
