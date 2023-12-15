@@ -40,7 +40,7 @@
 	};
 
 	const handleAnimEnd = () => {
-		window.location.href = '/page1.php';
+		window.location.href = '/letflix/page1.php';
 	};
 
 	function checkPassword(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {

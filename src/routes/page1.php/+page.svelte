@@ -48,7 +48,7 @@
 		<br />
 
 		<Resume
-			sql="SELECT * FROM 'topratedmovies' where Title like '%Spider-Man%' ORDER BY VoteAverage desc LIMIT 1;"
+			sql="SELECT * FROM 'topratedmovies' where popularity in (select max(popularity) from topratedmovies where Title like '%Spider-Man%');"
 			sectionTitle="La description du film Spider-Man le mieux noté :"
 			tableName="topratedmovies"
 		/>

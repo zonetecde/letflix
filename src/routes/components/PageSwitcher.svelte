@@ -4,13 +4,13 @@
 	function handleNextPage() {
 		if (page == 5) {
 			return;
-		} else window.location.href = '/page' + (Number(page) + 1) + '.php';
+		} else window.location.href = '/letflix/page' + (Number(page) + 1) + '.php';
 	}
 
 	function handlePreviousPage() {
 		if (page == 1) {
 			return;
-		} else window.location.href = '/page' + (Number(page) - 1) + '.php';
+		} else window.location.href = '/letflix/page' + (Number(page) - 1) + '.php';
 	}
 </script>
 

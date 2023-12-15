@@ -6,7 +6,7 @@
 	// Redirect to login page
 	onMount(() => {
 		if (!loggedIn) {
-			window.location.href = '/login.php';
+			window.location.href = '/letflix/login.php';
 		}
 	});
 </script>
