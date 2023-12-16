@@ -82,7 +82,7 @@
 
 						{#if modalText.includes('XILON')}
 							<button
-								class="w-64 h-16 bg-red-800 rounded-lg text-lg absolute bottom-0 mb-5 duration-150 xilon-button"
+								class="w-64 h-16 bg-red-800 rounded-lg text-lg absolute -bottom-18 mb-5 duration-150 xilon-button"
 								on:click={() =>
 									modal.set(
 										"Vous avez souscrit à l'abonnement <b>urgence capillaire</b>.</br>Nouveau délai de livraison estimé à 24 heures."

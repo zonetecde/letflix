@@ -9,6 +9,8 @@
 	export let sectionTitle: string;
 	export let tableName: string;
 
+	$: sectionTitle, (matchedMovies = []);
+
 	let matchedMovies: Movie[] = [];
 
 	// Récupère les films les mieux notés

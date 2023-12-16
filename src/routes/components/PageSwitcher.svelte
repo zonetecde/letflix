@@ -2,7 +2,7 @@
 	export let page: Number = 1;
 
 	function handleNextPage() {
-		if (page == 5) {
+		if (page == 4) {
 			return;
 		} else window.location.href = '/page' + (Number(page) + 1) + '.php';
 	}
@@ -48,7 +48,7 @@
 			fill="none"
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
-			stroke={page == 5 ? 'gray' : 'white'}
+			stroke={page == 4 ? 'gray' : 'white'}
 			class="h-14"
 		>
 			<path

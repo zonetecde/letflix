@@ -8,11 +8,15 @@
 	export let sectionTitle: string;
 	export let tableName: string;
 
-	let movie: Movie;
+	$: sectionTitle, (movie = undefined);
+
+	let movie: Movie | undefined = undefined;
 
 	// Récupère le résumé du film
 	const handleProcessRequestion = async () => {
 		movie = (await FetchDB(sql, tableName))[0];
+
+		if (movie === undefined) return;
 
 		const result = await GetPosterPath(movie.Title, movie.ReleaseDate);
 		movie.PosterImg = result || '';

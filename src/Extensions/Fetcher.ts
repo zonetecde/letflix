@@ -15,8 +15,6 @@ export async function FetchDB(sql: string, tableName: string = ''): Promise<any>
 
 	const results: [] = (await res.json()).results;
 
-	console.log(results);
-
 	// Si la requête SQL contient le nom de la table 'BestMoviesNetflix' alors
 	// convertis les résultats en objet Movie
 	if (tableName.toLowerCase() === 'bestmoviesnetflix') {

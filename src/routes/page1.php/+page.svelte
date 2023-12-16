@@ -5,11 +5,6 @@
 	import PageSwitcher from '../components/PageSwitcher.svelte';
 	import { modal } from '../../models/Store';
 
-	let onMovieScreen = false;
-	function handleWatchMovie() {
-		onMovieScreen = true;
-	}
-
 	function handlePublicityCloseButtonClicked() {
 		// Va vers la page d'achat
 		modal.set(
