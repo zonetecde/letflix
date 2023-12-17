@@ -75,6 +75,7 @@ export async function GetPosterPath(title: string, release_date: string): Promis
 
 	try {
 		const json = await res.json();
+
 		if (json.length === 0) return 'no_poster.png';
 		return 'https://image.tmdb.org/t/p/original' + json;
 	} catch {

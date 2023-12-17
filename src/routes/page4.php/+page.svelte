@@ -54,7 +54,6 @@
 	<div class="col-span-7 lg:col-span-9">
 		<PageSwitcher page={4} />
 
-		<!-- Input text with autocompletion from the actorsName string array -->
 		<div class="flex flex-col items-center justify-center gap-2">
 			<input
 				type="text"
@@ -73,6 +72,10 @@
 				<input type="checkbox" class="h-5 w-5" bind:checked={comparaisonExacte} />
 				Comparaison exacte ?
 			</label>
+
+			<i class="text-white opacity-60"
+				>La requête GET s'effectue lors du clique sur les boutons 'Charger...'</i
+			>
 		</div>
 
 		<br />

@@ -69,7 +69,7 @@
 			if (prevInput) {
 				prevInput.focus();
 			}
-		} else {
+		} else if (e.key.length === 1) {
 			const nextInput = document.getElementById(`input-${i + 1}`);
 			if (nextInput) {
 				nextInput.focus();
