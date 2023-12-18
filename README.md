@@ -2,6 +2,7 @@
 ### Projet de Terminale au Lycée Louis-Vincent
 
 Notions : Base de données, SQL, Web
+
 Technologies utilisées : Svelte, Typescript, PHP
 
 L'API PHP se trouve dans le dossier /api. Ajoutez un fichier `api_key.php` dans le dossier `/api` contenant le code suivant :
