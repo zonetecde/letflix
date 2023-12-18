@@ -1,6 +1,8 @@
 # Letflix
 ### Projet de Terminale au Lycée Louis-Vincent
 
+Lien vers le site : [https://letflix-six.vercel.app/](https://letflix-six.vercel.app/)
+
 Notions : Base de données, SQL, Web
 
 Technologies utilisées : Svelte, Typescript, PHP
