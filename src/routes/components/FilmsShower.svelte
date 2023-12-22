@@ -8,6 +8,7 @@
 	export let sql: string;
 	export let sectionTitle: string;
 	export let tableName: string;
+	export let args: string | undefined = undefined;
 
 	$: sectionTitle, (matchedMovies = []);
 
@@ -15,6 +16,9 @@
 
 	// Récupère les films les mieux notés
 	const handleProcessRequestion = async () => {
+		if (args !== '' && args !== undefined)
+			window.history.pushState('page4', 'sql', '/page4.php?acteur=' + args);
+
 		const tempMatchedMovies: Movie[] = await FetchDB(sql, tableName);
 
 		// Récupère les images des films si elles n'ont pas déjà été récupérées
