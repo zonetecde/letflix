@@ -11,7 +11,7 @@
 	onMount(() => {
 		setTimeout(() => {
 			showAds = true;
-		}, 7_000);
+		}, 100);
 	});
 
 	let promptShown = false;
@@ -98,6 +98,13 @@
 								on:click={handleButtonAdClick}>Oui</button
 							>
 						</div>
+
+						<button
+							class="text-white underline mt-5 text-sm bg-black bg-opacity-50"
+							on:click={() => (showAds = false)}
+						>
+							T'es bien gentil mais j'ai pas le temps pour tes bêtises
+						</button>
 					</div>
 				{/if}
 			</div>

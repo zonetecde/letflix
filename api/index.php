@@ -16,6 +16,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['endpoint'])) {
     if ($endpoint === 'is_running') {
         echo json_encode(['message' => 'PHP server is running']);
     } elseif ($endpoint === 'execute') {
+
+        // vérfie que ce n'est pas une injection SQL (utiliser uniquement la lecture donc toutes les requetes pour modifier la table doivent etre banni)
+        $invalidQueries = ['INSERT', 'UPDATE', 'DELETE', 'DROP', 'CREATE', 'ALTER', 'TRUNCATE', 'RENAME', 'GRANT', 'REVOKE', 'COMMIT', 'ROLLBACK', 'SAVEPOINT', 'START', 'LOCK', 'UNLOCK', 'SET', 'USE', 'SHOW', 'DESCRIBE', 'EXPLAIN'];
+
+        foreach ($invalidQueries as $query) {
+            // add a AND condition 'and the query does not contain SELECT'
+            if (strpos(strtoupper($_GET['sql']), strtoupper($query)) !== false && strpos(strtoupper($_GET['sql']), 'SELECT') === false) {
+                echo json_encode(['error' => 'Imagine être tellement nul que tes obligé de faire des injections SQL pour esperer avoir une meilleur note que le roi rayane... vraiment cringe, tu devrais avoir honte de toi. ']);
+                exit;
+            }
+        }
         // Récupère la requête SQL
         $sql = $_GET['sql'];
 
