@@ -12,6 +12,7 @@
 	let requestFailed: boolean = false;
 
 	$: sectionTitle, (movie = undefined);
+	$: sectionTitle, (requestFailed = false);
 
 	let movie: Movie | undefined = undefined;
 
