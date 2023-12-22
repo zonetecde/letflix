@@ -11,7 +11,7 @@
 	onMount(() => {
 		setTimeout(() => {
 			showAds = true;
-		}, 100);
+		}, 7000);
 	});
 
 	let promptShown = false;
