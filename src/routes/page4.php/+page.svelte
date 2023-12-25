@@ -20,7 +20,7 @@
 	const tableName = 'titles';
 
 	// le résumé du dernier film sorti de l'acteur dans la base titles
-	$: sqlDescription = `SELECT titles.* FROM titles, credits where titles.id = credits.id and LOWER(credits.name) ${
+	$: sqlDescription = `SELECT topratedmovies.* FROM titles, credits, topratedmovies where titles.id = credits.id and titles.title = topratedmovies.title and LOWER(credits.name) ${
 		!comparaisonExacte ? 'LIKE' : '='
 	} '${
 		(!comparaisonExacte ? '%' : '') + typedActorName.toLowerCase() + (!comparaisonExacte ? '%' : '')
@@ -80,10 +80,20 @@
 
 		<br />
 
-		<Carrousel sql={sqlMovies} sectionTitle={sectionTitleMovies} {tableName} />
+		<Carrousel
+			sql={sqlMovies}
+			sectionTitle={sectionTitleMovies}
+			{tableName}
+			args={typedActorName}
+		/>
 
 		<br />
 
-		<Resume sql={sqlDescription} sectionTitle={sectionTitleDescription} {tableName} />
+		<Resume
+			sql={sqlDescription}
+			sectionTitle={sectionTitleDescription}
+			tableName={'topratedmovies'}
+			args={typedActorName}
+		/>
 	</div>
 </div>

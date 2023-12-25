@@ -63,6 +63,27 @@ export async function FetchDB(sql: string, tableName: string = ''): Promise<any>
 		});
 
 		return movies;
+	} else if (tableName.toLowerCase() === 'topratedmovies') {
+		let movies: Movie[] = [];
+
+		results.map((mov: any) => {
+			movies.push(
+				new Movie(
+					mov.description,
+					mov.title,
+					-1,
+					mov.release_year,
+					-1,
+					-1,
+					'',
+					mov.runtime,
+					'',
+					mov.genres,
+					mov.production_countries,
+					mov.age_certification
+				)
+			);
+		});
 	}
 
 	return results;
